@@ -9,6 +9,7 @@ val scalaTestVersion = "3.0.5"
 val mysqlConnectorVersion = "5.1.39"
 val postgresqlDriverVersion = "9.4.1212"
 val mockitoVersion = "1.10.19"
+val apacheHadoopVersion = "3.2.0"
 
 lazy val compileScalastyle = taskKey[Unit]("compileScalastyle")
 
@@ -34,7 +35,8 @@ lazy val root = (project in file("."))
         "org.slf4j" % "slf4j-simple" % slf4jVersion,
         "org.scalatest" %% "scalatest" % scalaTestVersion,
         "org.testcontainers" % "mysql" % testcontainersVersion,
-        "org.testcontainers" % "postgresql" % testcontainersVersion
+        "org.testcontainers" % "postgresql" % testcontainersVersion,
+        "org.apache.hadoop" % "hadoop-common" % apacheHadoopVersion
       )
         ++ TEST(
         "mysql" % "mysql-connector-java" % mysqlConnectorVersion,
