@@ -6,9 +6,9 @@ import java.net.URI
 
 import com.dimafeng.testcontainers.GenericContainer.DockerImage
 import org.apache.hadoop.conf.Configuration
-import org.apache.hadoop.fs.{FSDataOutputStream, FileSystem, Path}
+import org.apache.hadoop.fs.{FileSystem, LocalFileSystem}
 import org.testcontainers.containers.BindMode
-import org.testcontainers.containers.wait.strategy.{LogMessageWaitStrategy, Wait, WaitStrategy}
+import org.testcontainers.containers.wait.strategy.{Wait, WaitStrategy}
 
 
 class HadoopContainer(dockerImage: DockerImage,
@@ -22,13 +22,12 @@ class HadoopContainer(dockerImage: DockerImage,
   private def hdfsuri = s"hdfs://${containerIpAddress}:${mappedPort(HadoopContainer.DEFAULT_PORT)}"
 
   private def hadoopConfig: Configuration = new Configuration() {
-    hadoopConfig.set("fs.defaultFS", hdfsuri)
+    this.set("fs.defaultFS", hdfsuri)
   }
 
   def getFileSystem: FileSystem = FileSystem.get(
     new URI(hdfsuri),
     hadoopConfig)
-
 }
 
 object HadoopContainer {

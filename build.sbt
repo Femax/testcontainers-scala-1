@@ -36,7 +36,9 @@ lazy val root = (project in file("."))
         "org.scalatest" %% "scalatest" % scalaTestVersion,
         "org.testcontainers" % "mysql" % testcontainersVersion,
         "org.testcontainers" % "postgresql" % testcontainersVersion,
-        "org.apache.hadoop" % "hadoop-common" % apacheHadoopVersion
+        "org.apache.hadoop" % "hadoop-hdfs" % apacheHadoopVersion,
+        "org.apache.hadoop" % "hadoop-common" % apacheHadoopVersion,
+        "org.apache.hadoop" % "hadoop-client" % apacheHadoopVersion
       )
         ++ TEST(
         "mysql" % "mysql-connector-java" % mysqlConnectorVersion,
